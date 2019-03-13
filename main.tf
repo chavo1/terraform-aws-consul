@@ -44,7 +44,7 @@ resource "aws_instance" "client" {
   associate_public_ip_address = true
 
   tags {
-    Name = "consul-client0${count.index + 1}"
+    Name = "consul-client${count.index + 1}"
   }
 
   connection {
@@ -59,7 +59,6 @@ resource "aws_instance" "client" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt-get update -y",
       "sudo bash /tmp/consul.sh",
       "sudo bash /tmp/kv.sh",
       "sudo bash /tmp/nginx.sh",
