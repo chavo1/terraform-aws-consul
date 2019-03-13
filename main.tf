@@ -29,8 +29,7 @@ resource "aws_instance" "server" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo chmod +x /tmp/consul.sh",
-      "sudo /tmp/consul.sh",
+      "sudo bash /tmp/consul.sh",
     ]
   }
 }
@@ -45,7 +44,7 @@ resource "aws_instance" "client" {
   associate_public_ip_address = true
 
   tags {
-    Name = "consul-client0${count.index + 1}"
+    Name = "consul-client${count.index + 1}"
   }
 
   connection {
@@ -60,13 +59,9 @@ resource "aws_instance" "client" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt-get update -y",
-      "sudo chmod +x /tmp/consul.sh",
-      "sudo chmod +x /tmp/kv.sh",
-      "sudo chmod +x /tmp/nginx.sh",
-      "sudo /tmp/consul.sh",
-      "sudo /tmp/kv.sh",
-      "sudo /tmp/nginx.sh"
+      "sudo bash /tmp/consul.sh",
+      "sudo bash /tmp/kv.sh",
+      "sudo bash /tmp/nginx.sh",
     ]
   }
 }
@@ -74,6 +69,7 @@ resource "aws_instance" "client" {
 output "public_dns_servers" {
   value = "${aws_instance.server.*.public_dns}"
 }
+
 output "public_dns_clients" {
   value = "${aws_instance.client.*.public_dns}"
 }
