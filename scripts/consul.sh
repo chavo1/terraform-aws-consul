@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
 SERVER_COUNT=1
 CLIENT_COUNT=0
 CONSUL_VERSION=1.4.3
@@ -7,8 +8,10 @@ IPs=$(hostname -I)
 HOST=$(hostname)
 
 # Install packages
+which unzip jq dnsutils vim curl &>/dev/null || {
 sudo apt-get update -y
-sudo apt-get install unzip jq dnsutils vim curl -y 
+sudo apt-get install unzip dnsutils vim curl -y 
+}
 
 #####################
 # Installing consul #
@@ -50,7 +53,7 @@ else
     DC=dc3
 fi   
 NODE_TYPE=client
-  if [[ $HOST =~ server ]]; then
+  if [[ $HOST =~ ip-172-31-16-1 ]]; then
     # if the name contain server we are there
     NODE_TYPE=server
   fi
@@ -81,7 +84,7 @@ sudo cat <<EOF > /etc/consul.d/config.json
 }
 EOF
 
-if [[ $IPs =~ 172.31.16 ]]; then
+if [[ $IPs =~ 172.31.16.1 ]]; then
 sudo cat <<EOF > /etc/consul.d/server.json
 { 
   "server": true,
