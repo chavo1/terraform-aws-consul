@@ -23,11 +23,17 @@ You must also have an AWS account. You will need to set up your AWS credentials 
 ### We are now ready to go.
 ```
 git clone https://github.com/chavo1/consul-terraform.git
-cd consul consul-terraform/packer
-sudo packer build xenial.json # this will build a custom AMI with consul. 
+cd consul consul-terraform 
 ```
-Please check the readme in packer directory. 
-Fill the AMI ID in example.tfvars file.
+- Create a terraform.tfvars file with following content:
+```
+access_key = "< Your AWS Access_key >"
+secret_key = "< Your AWS Secret_key >"
+key_name = ""
+region = ""
+instance_type = ""
+subnet = "< VPC subnet ID >"
+```
 
 ### We can start with deploying process
 ```
