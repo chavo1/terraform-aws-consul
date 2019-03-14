@@ -47,14 +47,6 @@ sudo cat <<EOF > /etc/consul.d/config.json
 }
 EOF
 
-if [[ $IPs =~ 172.31.16.1 ]]; then
-sudo cat <<EOF > /etc/consul.d/server.json
-{ 
-  "server": true,
-  "bootstrap_expect": ${SERVER_COUNT}${WAN}
-}
-EOF
-fi
 sudo chown -R consul:consul /etc/consul.d/
 sudo chmod -R 775 /etc/consul.d/
 
@@ -62,6 +54,13 @@ sudo chmod -R 775 /etc/consul.d/
 # Starting Consul #
 ###################
 sudo systemctl daemon-reload
+
+if [[ $HOST =~ ip-172-31-16-2 ]]; then
+  # if the name contain ip-172-31-16-1 we are on client
+  # we need to start after the servers so sleep 30
+  sleep 30
+fi
+
 sudo systemctl start consul
 
 ###########################
@@ -75,6 +74,6 @@ sudo systemctl start consul
     fi
 echo consul started
 set +x
-sleep 20
+sleep 15
 consul members
 

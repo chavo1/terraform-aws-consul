@@ -5,18 +5,18 @@
 
 ### v0.3
 - [x] build with packer-kitchen test - server and client ami
+[PACKER-SERVER](https://github.com/chavo1/packer-consul-server)
+[PACKER-CLIENT](https://github.com/chavo1/packer-consul-client)
 
 - [x] update code to use our own ami
 
-# This repo contains a demo of Consul cluster in AWS over HTTP as a systemd daemon service.
+# This repo contains a demo of [Consul](https://www.consul.io/) cluster in AWS over HTTP as a systemd daemon service.
 
 ## Prerequisites
 
 - Please install the following components:
 
-  - | [Packer](https://www.packer.io/)
   - | [Terraform](https://www.terraform.io/)
-  - | [KitchenCI](https://kitchen.ci/)
 
 You must also have an AWS account. You will need to set up your AWS credentials and needed variables in "example.tfvars" file. 
 

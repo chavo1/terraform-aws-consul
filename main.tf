@@ -5,10 +5,10 @@ provider "aws" {
 }
 
 resource "aws_instance" "server" {
-  ami                         = "${var.ami}"
+  ami                         = "${var.ami["server"]}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${var.key_name}"
-  count                       = 1
+  count                       = 3
   private_ip                  = "172.31.16.${count.index + 11}"
   subnet_id                   = "${var.subnet}"
   associate_public_ip_address = true
@@ -35,10 +35,10 @@ resource "aws_instance" "server" {
 }
 
 resource "aws_instance" "client" {
-  ami                         = "${var.ami}"
+  ami                         = "${var.ami["client"]}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${var.key_name}"
-  count                       = 0
+  count                       = 2
   private_ip                  = "172.31.16.${count.index + 21}"
   subnet_id                   = "${var.subnet}"
   associate_public_ip_address = true
@@ -61,7 +61,7 @@ resource "aws_instance" "client" {
     inline = [
       "sudo bash /tmp/consul.sh",
       "sudo bash /tmp/kv.sh",
-      "sudo bash /tmp/nginx.sh"
+      "sudo bash /tmp/nginx.sh",
     ]
   }
 }
