@@ -5,8 +5,13 @@ export DEBIAN_FRONTEND=noninteractive
 IPs=$(hostname -I)
 HOST=$(hostname)
 
-sudo mkdir -p /vagrant/pkg
 
+which nginx &>/dev/null || {
+    sudo apt get update -y
+    sudo apt install nginx -y
+    }
+
+sudo service nginx stop
 # If we need envconsul
 if which envconsul >/dev/null; then
 
