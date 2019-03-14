@@ -22,6 +22,9 @@ https://www.packer.io/intro/getting-started/build-image.html#some-more-examples-
 To test you will need Kitchen:
 
 Kitchen is a RubyGem so please find how to install and setup Test Kitchen for developing infrastructure code, check out the [Getting Started Guide](http://kitchen.ci/docs/getting-started/).
+For more information about tests please check the next link:
+
+[InSpec](https://www.inspec.io/docs/reference/resources/bash/)
 
 A following [gems](https://guides.rubygems.org/what-is-a-gem/) should be installed:
 
