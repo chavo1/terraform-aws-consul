@@ -12,11 +12,11 @@
 
 ## Prerequisites
 
-Please install the following components:
+- Please install the following components:
 
-  [Packer](https://www.packer.io/)
-  [Terraform](https://www.terraform.io/)
-  [KitchenCI](https://kitchen.ci/)
+  - | [Packer](https://www.packer.io/)
+  - | [Terraform](https://www.terraform.io/)
+  - | [KitchenCI](https://kitchen.ci/)
 
 You must also have an AWS account. You will need to set up your AWS credentials and needed variables in "example.tfvars" file. 
 
