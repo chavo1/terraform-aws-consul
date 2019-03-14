@@ -1,21 +1,16 @@
 # Usage example:
 
-This will build an AWS AMI with nginx installed.
-
-1.  Fork the copy of chavo1/ami-nginx
-2.  Clone it with following :
-
+## This will build an AWS AMI with consul installed. If you need a specific version of [Consul](https://www.consul.io/). 
+- Please change it into "provision.sh" script:
 ```
-
-git clone git@github.com:chavo1/ami-nginx.git
-
+CONSUL=1.4.3
 ```
-Then export you AWS keys:
+- Export you AWS keys:
 ```
 export AWS_ACCESS_KEY_ID=MYACCESSKEYID
 export AWS_SECRET_ACCESS_KEY=MYSECRETACCESSKEY
 ```
-3. From your CLI execute a following command:
+- From your CLI execute a following command:
 
 ```
 sudo packer build xenial.json
@@ -41,7 +36,6 @@ kitchen converge
 kitchen verify
 kitchen destroy
 ```
-
 The result should be as follow
 ``` 
 ✔  operating_system: Command: `lsb_release -a`
