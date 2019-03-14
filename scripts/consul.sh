@@ -2,12 +2,11 @@
 
 export DEBIAN_FRONTEND=noninteractive
 SERVER_COUNT=1
-CLIENT_COUNT=0
 IPs=$(hostname -I)
 HOST=$(hostname)
 
-killall consul
-sudo mkdir -p /etc/consul.d/ /vagrant/consul_logs
+sudo killall consul
+sudo mkdir -p /etc/consul.d/ /opt/consul/
 
 # ###########################
 # # Starting consul servers #
@@ -68,9 +67,9 @@ sudo systemctl start consul
 ###########################
 # Redirecting conslul log #
 ###########################
-    if [ -d /vagrant ]; then
-        mkdir -p /vagrant/consul_logs
-        journalctl -f -u consul.service &> /vagrant/consul_logs/${HOST}.log &
+    if [ -d /opt/consul ]; then
+        mkdir -p /opt/consul/consul_logs
+        journalctl -f -u consul.service &> /opt/consul/consul_logs/${HOST}.log &
     else
         journalctl -f -u consul.service > /tmp/consul.log
     fi

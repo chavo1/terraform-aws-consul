@@ -1,4 +1,6 @@
-# consul-terraform
+# This repo contains a demo of Consul cluster in AWS over HTTP as a systemd daemon service.
+
+## 
 
 ## TODO
 
@@ -9,5 +11,3 @@
 - [ ] build with packer-kitchen test - server and client ami
 
 - [ ] update code to use our own ami
-
-

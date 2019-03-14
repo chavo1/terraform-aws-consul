@@ -8,7 +8,7 @@ resource "aws_instance" "server" {
   ami                         = "${var.ami}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${var.key_name}"
-  count                       = 3
+  count                       = 1
   private_ip                  = "172.31.16.${count.index + 11}"
   subnet_id                   = "${var.subnet}"
   associate_public_ip_address = true
@@ -38,13 +38,13 @@ resource "aws_instance" "client" {
   ami                         = "${var.ami}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${var.key_name}"
-  count                       = 2
+  count                       = 0
   private_ip                  = "172.31.16.${count.index + 21}"
   subnet_id                   = "${var.subnet}"
   associate_public_ip_address = true
 
   tags {
-    Name = "consul-client${count.index + 1}"
+    Name = "consul-client0${count.index + 1}"
   }
 
   connection {
@@ -61,7 +61,7 @@ resource "aws_instance" "client" {
     inline = [
       "sudo bash /tmp/consul.sh",
       "sudo bash /tmp/kv.sh",
-      "sudo bash /tmp/nginx.sh",
+      "sudo bash /tmp/nginx.sh"
     ]
   }
 }
