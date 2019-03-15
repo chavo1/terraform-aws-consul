@@ -10,8 +10,8 @@ You must also have an AWS account. You will need to set up your AWS credentials 
 
 ### We are now ready to go.
 ```
-git clone https://github.com/chavo1/consul-terraform.git
-cd consul consul-terraform/example
+git clone git clone git@github.com:chavo1/terraform-aws-consul.git
+cd consul terraform-aws-consul/example
 ```
 - Create a terraform.tfvars file with following content:
 ```
