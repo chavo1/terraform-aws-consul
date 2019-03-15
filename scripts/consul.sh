@@ -54,13 +54,6 @@ sudo chmod -R 775 /etc/consul.d/
 # Starting Consul #
 ###################
 sudo systemctl daemon-reload
-
-if [[ $HOST =~ ip-172-31-16-2 ]]; then
-  # if the name contain ip-172-31-16-1 we are on client
-  # we need to start after the servers so sleep 30
-  sleep 30
-fi
-
 sudo systemctl start consul
 
 ###########################
