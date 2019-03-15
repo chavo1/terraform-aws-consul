@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 export DEBIAN_FRONTEND=noninteractive
-SERVER_COUNT=1
 IPs=$(hostname -I)
 HOST=$(hostname)
 
@@ -67,6 +66,6 @@ sudo systemctl start consul
     fi
 echo consul started
 set +x
-sleep 15
+sleep 10
 consul members
 

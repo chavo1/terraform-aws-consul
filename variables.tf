@@ -3,6 +3,8 @@ variable "secret_key" {}
 variable "subnet" {}
 variable "instance_type" {}
 variable "key_name" {}
+variable "client_count" {}
+variable "server_count" {}
 
 variable "ami" {
   type = "map"
