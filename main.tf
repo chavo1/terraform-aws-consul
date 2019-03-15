@@ -8,7 +8,7 @@ resource "aws_instance" "server" {
   ami                         = "${var.ami["server"]}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${var.key_name}"
-  count                       = 3
+  count                       = "${var.server_count}"
   private_ip                  = "172.31.16.${count.index + 11}"
   subnet_id                   = "${var.subnet}"
   associate_public_ip_address = true
@@ -38,7 +38,7 @@ resource "aws_instance" "client" {
   ami                         = "${var.ami["client"]}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${var.key_name}"
-  count                       = 2
+  count                       = "${var.client_count}"
   private_ip                  = "172.31.16.${count.index + 21}"
   subnet_id                   = "${var.subnet}"
   associate_public_ip_address = true
