@@ -42,6 +42,7 @@ resource "aws_instance" "client" {
   private_ip                  = "172.31.16.${count.index + 21}"
   subnet_id                   = "${var.subnet}"
   associate_public_ip_address = true
+  depends_on = ["aws_instance.server"]
 
   tags {
     Name = "consul-client0${count.index + 1}"
