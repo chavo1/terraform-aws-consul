@@ -12,5 +12,5 @@
 
 ## This repo contains Terraform - AWS - Consul module which deploys Consul cluster on 1 DC in AWS over HTTP as a systemd daemon service.
 
-### How to use it - please refer to the [example](https://github.com/chavo1/terraform-aws-consul/example).
+### How to use it - please refer to the [example](https://github.com/chavo1/terraform-aws-consul/tree/master/example).
 
