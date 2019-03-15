@@ -6,14 +6,13 @@
 
   - | [Terraform](https://www.terraform.io/)
 
-You must also have an AWS account. You will need to set up your AWS credentials and needed variables in "example.tfvars" file. 
-
-### We are now ready to go.
+- You must also have an AWS account. 
+- Clone the repo:
 ```
 git clone git clone git@github.com:chavo1/terraform-aws-consul.git
 cd consul terraform-aws-consul/example
 ```
-- Create a terraform.tfvars file with following content:
+- Create terraform.tfvars file with needed credential and variables:
 ```
 access_key = "< Your AWS Access_key >"
 secret_key = "< Your AWS Secret_key >"
