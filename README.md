@@ -10,7 +10,7 @@
 
 - [x] update code to use our own ami
 
-## This repo contains Terraform - Consul module which deploys Consul cluster on 1 DC in AWS over HTTP as a systemd daemon service.
+## This repo contains Terraform - AWS - Consul module which deploys Consul cluster on 1 DC in AWS over HTTP as a systemd daemon service.
 
 ### You must also have an AWS account. For example how to use it please check the following repo:
 
