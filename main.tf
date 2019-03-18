@@ -62,6 +62,7 @@ resource "aws_instance" "client" {
     inline = [
       "sudo bash /tmp/consul.sh",
       "sudo bash /tmp/kv.sh",
+      "sudo bash /tmp/consul-template.sh",
       "sudo bash /tmp/nginx.sh",
     ]
   }
