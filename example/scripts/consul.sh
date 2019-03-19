@@ -30,7 +30,10 @@ if [[ $HOST =~ ip-172-31-16-1 ]]; then
   # if the name contain server we are there
   NODE_TYPE=server
 fi
-LAN=", \"retry_join\": [ \"$DC_RANGE.11\", \"$DC_RANGE.12\", \"$DC_RANGE.13\" ]"
+# Cloud Auto-joining 
+LAN=", \"retry_join\": [ \"provider=aws tag_key=consul tag_value=app\" ]"
+# Joining with private IPs
+# LAN=", \"retry_join\": [ \"$DC_RANGE.11\", \"$DC_RANGE.12\", \"$DC_RANGE.13\" ]"
 WAN=", \"retry_join_wan\": [ \"$DC_RANGE_OP.11\", \"$DC_RANGE_OP.12\", \"$DC_RANGE_OP.13\" ]"
   
 

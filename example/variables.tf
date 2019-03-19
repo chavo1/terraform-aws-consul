@@ -10,11 +10,21 @@ variable "ami" {
   type = "map"
 
   default = {
-    client = "ami-06e53b23dfe5d38d3"
-    server = "ami-0c2073f0a75d77a95"
+    client = "ami-0c07b172e2210f10d"
+    server = "ami-0e407afb422953a9e"
   }
 }
 
 variable "region" {
   default = "us-east-1"
+}
+
+variable "create" {
+  description = "Create Module, defaults to true."
+  default     = true
+}
+
+variable "name" {
+  description = "Name for resources, defaults to \"consul-auto-join-instance-role-aws\"."
+  default     = "consul-auto-join-aws"
 }
