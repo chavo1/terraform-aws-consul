@@ -1,7 +1,6 @@
 ---
 driver:
   name: terraform
-  parallelism: 1
 
 provisioner:
   name: terraform
@@ -11,6 +10,9 @@ verifier:
   systems:
     - name: basic
       backend: local
+      attrs_outputs:
+        client: public_dns_clients
+        server: public_dns_servers
 
 platforms:
   - name: terraform
