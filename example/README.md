@@ -1,11 +1,10 @@
 # This example contains a demo of [Consul](https://www.consul.io/) cluster in AWS over HTTP as a systemd daemon service.
-
+- Joining of the consul agent could be done with:
+1. Cloud Auto-joining more info [HERE](https://www.consul.io/docs/agent/cloud-auto-join.html) and examples [HERE](https://github.com/hashicorp-modules/consul-auto-join-instance-role-aws)
+2. [-retry-join](https://www.consul.io/docs/agent/options.html#_retry_join)
 ## Prerequisites
-
 - Please install the following component:
-
   - | [Terraform](https://www.terraform.io/)
-
 - You must also have an AWS account. 
 - Clone the repo:
 ```
@@ -23,7 +22,6 @@ subnet = "< VPC subnet ID >"
 client_count = 2
 server_count = 2
 ```
-
 ### We can start with deploying process
 ```
 terraform init
