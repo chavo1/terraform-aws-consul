@@ -64,6 +64,7 @@ resource "aws_instance" "client" {
       "sudo bash /tmp/kv.sh",
       "sudo bash /tmp/consul-template.sh",
       "sudo bash /tmp/nginx.sh",
+      "sudo bash /tmp/dns.sh",
     ]
   }
 }
