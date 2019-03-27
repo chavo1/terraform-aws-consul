@@ -6,6 +6,10 @@ variable "key_name" {}
 variable "client_count" {}
 variable "server_count" {}
 
+// This is our server and client AMIs - we build with Packer for example and more info
+// https://github.com/chavo1/packer-consul-client
+// https://github.com/chavo1/packer-consul-server
+
 variable "ami" {
   type = "map"
 
