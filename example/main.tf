@@ -9,6 +9,7 @@ module "consul-terraform" {
   subnet        = "${var.subnet}"
   client_count  = "${var.client_count}"
   server_count  = "${var.server_count}"
+  dc_net        = "${var.dc_net["dc1"]}"
 }
 
 output "public_dns_servers" {
