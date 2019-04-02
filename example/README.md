@@ -22,6 +22,10 @@ instance_type = ""
 subnet = "< VPC subnet ID >"
 client_count = 2
 server_count = 2
+subnet = [
+    "Your AWS subnet",
+    "Your AWS subnet"
+]
 ```
 ### We can start with deploying process
 ```

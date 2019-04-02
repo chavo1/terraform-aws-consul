@@ -67,7 +67,7 @@ resource "aws_instance" "server" {
   key_name                    = "${var.key_name}"
   count                       = "${var.server_count}"
   private_ip                  = "172.31.${var.dc_net}.${count.index + 11}"
-  subnet_id                   = "${var.subnet[0]}"
+  subnet_id                   = "${var.subnet}"
   iam_instance_profile        = "${aws_iam_instance_profile.consul.id}"
   associate_public_ip_address = true
 
@@ -102,7 +102,7 @@ resource "aws_instance" "client" {
   key_name                    = "${var.key_name}"
   count                       = "${var.client_count}"
   private_ip                  = "172.31.${var.dc_net}.${count.index + 21}"
-  subnet_id                   = "${var.subnet[0]}"
+  subnet_id                   = "${var.subnet}"
   iam_instance_profile        = "${aws_iam_instance_profile.consul.id}"
   associate_public_ip_address = true
   depends_on                  = ["aws_instance.server"]
