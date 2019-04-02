@@ -6,7 +6,7 @@ module "consul-terraform" {
   region        = "${var.region}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.key_name}"
-  subnet        = "${var.subnet}"
+  subnet        = "${var.subnet[0]}"
   client_count  = "${var.client_count}"
   server_count  = "${var.server_count}"
   dc_net        = "${var.dc_net["dc1"]}"
