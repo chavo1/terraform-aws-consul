@@ -5,6 +5,14 @@ variable "instance_type" {}
 variable "key_name" {}
 variable "client_count" {}
 variable "server_count" {}
+variable "dc_net" {
+  type = "map"
+
+  default = {
+    dc1 = "16"
+    dc2 = "32"
+  }
+}
 
 variable "ami" {
   type = "map"
