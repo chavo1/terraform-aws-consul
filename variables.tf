@@ -1,6 +1,11 @@
 variable "access_key" {}
 variable "secret_key" {}
-variable "subnet" {}
+
+variable "subnet" {
+  type    = "list"
+  default = []
+}
+
 variable "instance_type" {}
 variable "key_name" {}
 variable "client_count" {}
