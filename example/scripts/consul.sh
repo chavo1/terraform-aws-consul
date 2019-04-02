@@ -13,11 +13,11 @@ sudo mkdir -p /etc/consul.d/ /opt/consul/
 if [[ $IPs =~ 172.31.16 ]]; then # if 172.31.16 it is dc1
     DC_RANGE_OP="172.31.32"
     DC_RANGE="172.31.16"
-    DC=dc1
+    DC=sofia
 elif [[ $IPs =~ 172.31.32 ]]; then  # if 172.31.32 it is dc2
     DC_RANGE_OP="172.31.16"
     DC_RANGE="172.31.32"
-    DC=dc2
+    DC=varna
 else 
     DC_RANGE_OP="172.31.32"
     DC_RANGE="172.31.48"
