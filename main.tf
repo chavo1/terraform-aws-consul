@@ -73,8 +73,9 @@ resource "aws_instance" "server" {
 
   // Consul tag consul = "app" we need it for AWS Consul Auto-Join
   tags {
-    Name   = "consul-server0${count.index + 1}"
-    consul = "app"
+    Name       = "consul-server0${count.index + 1}"
+    consul     = "app"
+    consul_wan = "wan_app"
   }
 
   // Our private key needed for connection to the servers 
@@ -84,13 +85,14 @@ resource "aws_instance" "server" {
   }
 
   provisioner "file" {
-    source      = "scripts/consul.sh"
+    source      = "${path.module}/scripts/consul.sh"
     destination = "/tmp/consul.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "sudo bash /tmp/consul.sh",
+      "echo ${var.dcname}",
+      "sudo bash /tmp/consul.sh ${var.dcname}",
     ]
   }
 }
@@ -109,8 +111,9 @@ resource "aws_instance" "client" {
 
   // consul tag consul = "app" is important for AWS Consul Auto-Join
   tags {
-    Name   = "consul-client0${count.index + 1}"
-    consul = "app"
+    Name       = "consul-client0${count.index + 1}"
+    consul     = "app"
+    consul_wan = "wan_app"
   }
 
   // Our private key needed for connection to the clients 
@@ -121,14 +124,15 @@ resource "aws_instance" "client" {
 
   // Copying needed scripts on the instance 
   provisioner "file" {
-    source      = "scripts/"
+    source      = "${path.module}/scripts/"
     destination = "/tmp/"
   }
 
   // This is our provisioning scripts
   provisioner "remote-exec" {
     inline = [
-      "sudo bash /tmp/consul.sh",
+      "echo ${var.dcname}",
+      "sudo bash /tmp/consul.sh ${var.dcname}",
       "sudo bash /tmp/kv.sh",
       "sudo bash /tmp/consul-template.sh",
       "sudo bash /tmp/nginx.sh",

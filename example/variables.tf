@@ -6,6 +6,11 @@ variable "subnet" {
   default = []
 }
 
+variable "dcname" {
+  type    = "map"
+  default = {}
+}
+
 variable "instance_type" {}
 variable "key_name" {}
 variable "client_count" {}
