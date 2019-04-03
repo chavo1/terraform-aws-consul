@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-set -x
 export DEBIAN_FRONTEND=noninteractive
 
-sudo apt-get install dnsmasq -y 
-
+which dnsmasq &>/dev/null || {
+    sudo apt install dnsmasq -y
+    }
+sudo systemctl stop dnsmasq
 #######################################################################
 # Consul DNS, to be resolved in the consul domain as well as external #
 #######################################################################
@@ -16,5 +17,4 @@ cat <<EOF > /etc/dnsmasq.d/external.conf
 server=8.8.8.8
 EOF
 
-sudo systemctl restart dnsmasq
-set +x
+sudo systemctl start dnsmasq
