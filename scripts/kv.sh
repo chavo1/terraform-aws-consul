@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 HOST=$(hostname)
 # API add value
 curl -s \
@@ -21,6 +23,8 @@ curl -s \
 </body>
 </html>' \
     http://127.0.0.1:8500/v1/kv/$HOST/nginx
+
+set +x
 
 
 

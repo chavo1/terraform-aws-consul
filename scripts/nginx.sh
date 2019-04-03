@@ -1,16 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -x
 
 export DEBIAN_FRONTEND=noninteractive
-
 IPs=$(hostname -I)
 HOST=$(hostname)
 
-
-which nginx &>/dev/null || {
-    sudo apt get update -y
-    sudo apt install nginx -y
-    }
-
+# nginx
 sudo service nginx stop
 # If we need envconsul
 if which envconsul >/dev/null; then
@@ -23,8 +19,6 @@ echo $nginx > /var/www/html/index.nginx-debian.html
 
 # If we consul-template
 elif  which consul-template >/dev/null; then
-set -x
-    export HOST=$HOST
     consul-template -config /tmp/templates/config.hcl > /tmp/template_$HOST.log & 
 else
   
@@ -84,9 +78,7 @@ cat << EOF > /etc/consul.d/web.json
 }
 EOF
 
-
 consul reload
-
 consul members
 
 set +x
