@@ -14,3 +14,4 @@ which consul-template || {
         sudo chmod +x consul
     popd
 }
+
