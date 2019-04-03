@@ -10,3 +10,5 @@ CONSUL_TEMPLATE_VERSION="0.20.0"
         sudo unzip consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip
         sudo chmod +x consul-template
     popd
+ 
+ set +x
