@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 export DEBIAN_FRONTEND=noninteractive
-IPs=$(hostname -I)
-HOST=$(hostname)
+
+export IPs=$(hostname -I)
+export HOST=$(hostname)
+export DC=$1
 
 sudo killall consul
 sudo mkdir -p /etc/consul.d/ /opt/consul/
@@ -13,29 +15,27 @@ sudo mkdir -p /etc/consul.d/ /opt/consul/
 if [[ $IPs =~ 172.31.16 ]]; then # if 172.31.16 it is dc1
     DC_RANGE_OP="172.31.32"
     DC_RANGE="172.31.16"
-    DC=sofia
 elif [[ $IPs =~ 172.31.32 ]]; then  # if 172.31.32 it is dc2
     DC_RANGE_OP="172.31.16"
     DC_RANGE="172.31.32"
-    DC=varna
 else 
     DC_RANGE_OP="172.31.32"
     DC_RANGE="172.31.48"
-    DC=dc3
 fi   
 
 NODE_TYPE=client
-
-if [[ $HOST =~ ip-172-31-16-1 ]]; then
-  # if the name contain server we are there
-  NODE_TYPE=server
-fi
+WAN=""
 # Cloud Auto-joining 
 LAN=", \"retry_join\": [ \"provider=aws tag_key=consul tag_value=app\" ]"
 # Joining with private IPs
 # LAN=", \"retry_join\": [ \"$DC_RANGE.11\", \"$DC_RANGE.12\", \"$DC_RANGE.13\" ]"
-WAN=", \"retry_join_wan\": [ \"$DC_RANGE_OP.11\", \"$DC_RANGE_OP.12\", \"$DC_RANGE_OP.13\" ]"
-  
+# WAN=", \"retry_join_wan\": [ \"$DC_RANGE_OP.11\", \"$DC_RANGE_OP.12\", \"$DC_RANGE_OP.13\" ]"
+
+# if the name contain ip-172-31-*-1 we are on server
+if [[ $HOST =~ ip-172-31-16-1 || $HOST =~ ip-172-31-32-1 || $HOST =~ ip-172-31-48-1 ]]; then
+  NODE_TYPE=server
+  WAN=", \"retry_join_wan\": [ \"provider=aws tag_key=consul_wan tag_value=wan_app\" ]"
+fi
 
 sudo cat <<EOF > /etc/consul.d/config.json
 { 
@@ -45,7 +45,7 @@ sudo cat <<EOF > /etc/consul.d/config.json
   "bind_addr": "0.0.0.0",
   "advertise_addr": "${IPs}",
   "enable_script_checks": true,
-  "data_dir": "/opt/consul"${LAN}
+  "data_dir": "/opt/consul"${LAN}${WAN}
 }
 EOF
 

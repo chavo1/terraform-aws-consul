@@ -6,6 +6,7 @@ variable "key_name" {}
 variable "client_count" {}
 variable "server_count" {}
 variable "dc_net" {}
+variable "dcname" {}
 
 // This is our server and client AMIs - we build with Packer for example and more info
 // https://github.com/chavo1/packer-consul-client
