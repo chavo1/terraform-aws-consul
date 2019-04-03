@@ -16,7 +16,7 @@ variable "ami" {
   type = "map"
 
   default = {
-    client = "ami-04d7959a5b5d42e50"
+    client = "ami-023d06001e0e56264"
     server = "ami-00e9cbd23a90befc8"
   }
 }
