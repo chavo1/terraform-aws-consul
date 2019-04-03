@@ -2,9 +2,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-which dnsmasq &>/dev/null || {
-    sudo apt install dnsmasq -y
-    }
+sudo apt-get install dnsmasq -y
 sudo systemctl stop dnsmasq
 #######################################################################
 # Consul DNS, to be resolved in the consul domain as well as external #
